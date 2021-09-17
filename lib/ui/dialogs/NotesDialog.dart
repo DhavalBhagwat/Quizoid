@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 import 'package:app/data/bloc/lib.dart';
 import 'package:app/utils/lib.dart';
+import 'package:app/services/DataService.dart';
 
 class NotesDialog extends StatefulWidget {
 
@@ -24,12 +26,14 @@ class _NotesDialogState extends State<NotesDialog> {
 
   NotesProvider? _provider;
   TextEditingController? _remark;
+  Logger _logger = Logger.getInstance;
+  static const _TAG = "NotesDialog";
 
   @override
   void initState() {
     super.initState();
     _provider = Provider.of<NotesProvider>(context, listen: false);
-    _remark = TextEditingController(text: "");
+    _remark = TextEditingController(text: _provider?.noteContent);
   }
 
   @override
@@ -93,7 +97,8 @@ class _NotesDialogState extends State<NotesDialog> {
                 Container(
                   child: TextButton(
                     onPressed: () {
-                      //TODO
+                      //TODO : add snack
+                      print("COMING SOON");
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -120,9 +125,7 @@ class _NotesDialogState extends State<NotesDialog> {
                     foregroundColor: MaterialStateProperty.all(AppTheme.darkGrey),
                     backgroundColor: MaterialStateProperty.all<Color>(AppTheme.transparent),
                   ),
-                  onPressed: () async {
-                    //TODO
-                  },
+                  onPressed: () async => _addNote(context),
                   child: Text(
                     Strings.save,
                     style: TextStyle(fontSize: 16.0),
@@ -137,8 +140,18 @@ class _NotesDialogState extends State<NotesDialog> {
     );
   }
 
-  void _addNote(BuildContext context) {
-    //TODO
+  void _addNote(BuildContext context) async {
+    try {
+      await EasyLoading.show(maskType: EasyLoadingMaskType.black, dismissOnTap: false);
+      _provider?.noteContent = _remark!.value.text.toString();
+      await DataService.getInstance.addNote(context);
+      await EasyLoading.dismiss();
+      _dismiss(context);
+    } catch (error) {
+      _logger.e(_TAG, "addNote()", message: error.toString());
+      await EasyLoading.dismiss();
+      _dismiss(context);
+    }
   }
 
   void _dismiss(BuildContext context) {

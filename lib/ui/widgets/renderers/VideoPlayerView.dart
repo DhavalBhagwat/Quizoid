@@ -10,11 +10,11 @@ import 'package:app/services/lib.dart';
 
 class VideoPlayerView extends StatefulWidget {
 
-  final int? videoId;
+  final String? videoId;
   final String? url;
 
   const VideoPlayerView({
-    this.videoId = 1234,
+    this.videoId = "VID0001",
     @required this.url,
     Key? key
   }) : super(key: key);
