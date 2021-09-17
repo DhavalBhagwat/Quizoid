@@ -5,16 +5,23 @@ import 'package:app/db/lib.dart';
 class ENotes {
 
   @PrimaryKey(autoGenerate: true)
-  int id;
-  String videoId = "";
-  String noteId = "";
-  String noteContent = "";
+  int? id;
+  String? videoId = "";
+  String? noteId = "";
+  String? noteContent = "";
 
   ENotes({
-    this.id = -1,
-    required this.videoId,
-    required this.noteId,
-    required this.noteContent
+    this.id,
+    this.videoId,
+    this.noteId,
+    this.noteContent
   });
+
+  Map toJson() => {
+    'id': id,
+    'videoId': videoId,
+    'noteId': noteId,
+    'noteContent': noteContent,
+  };
 
 }

@@ -104,6 +104,7 @@ output.json
 # Flutter/Dart/Pub related
 **/doc/api/
 .dart_tool/
+.idea/
 .flutter-plugins
 .flutter-plugins-dependencies
 .fvm/

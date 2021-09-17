@@ -70,8 +70,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> initializePlayer() async {
-    _videoController = VideoPlayerController.network('https://assets.mixkit.co/videos/preview/mixkit-daytime-city-traffic-aerial-view-56-large.mp4');
-    await _videoController?.initialize();
+    _videoController = VideoPlayerController.network('https://assets.mixkit.co/videos/preview/mixkit-daytime-city-traffic-aerial-view-56-large.mp4')
+      ..initialize()
+          .then((_) {setState(() {
+        _videoController!.play();
+    });}
+    );
     _chewieController = ChewieController(
         videoPlayerController: _videoController!,
         autoPlay: true,
@@ -81,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
         return <OptionItem>[
           OptionItem(
             onTap: () async {
-            await   _manager!.userDao.insertNote(ENotes(videoId: "1234", noteId: "noteid", noteContent: "HHELLO WORLD"));
+            await   _manager!.userDao.insertNote(ENotes(videoId: "1234", noteId: _videoController?.value.position.inMilliseconds.toString(), noteContent: "HHELLO WORLD"));
             },
             iconData: Icons.chat,
             title: 'My localized title',
@@ -114,7 +118,11 @@ class _MyHomePageState extends State<MyHomePage> {
   void initializeDatabase() async {
     _manager = await DatabaseHelper.getInstance;
     _manager!.userDao.getNotesList("1234").then((response) => {
-      if(response.isNotEmpty)print(" NOT EMPTY !!!!!!!!!!!!!!!!!!!!!!!!!")
+      if(response.isNotEmpty){
+        for (ENotes note in response) {
+          print(note.toJson().toString())
+        }
+      }
       else print("EMPTY !!!!!!!!!!!!!!!!!!!!!!!!!")
     });
   }
@@ -133,10 +141,28 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text("Flutter Demo Home Page"),
       ),
-      body: _chewieController != null && _chewieController!.videoPlayerController.value.isInitialized
-          ? Chewie(
-        controller: _chewieController!,
+          body: Center(
+    child:
+
+
+
+
+      _chewieController != null && _chewieController!.videoPlayerController.value.isInitialized
+          ? ValueListenableBuilder(
+        valueListenable: _chewieController!.videoPlayerController,
+
+        builder: (BuildContext context, VideoPlayerValue value, Widget? child) {
+          //print(value.position);
+          return Chewie(
+            controller: _chewieController!,
+          );
+        },
+        child: Chewie(
+          controller: _chewieController!,
+        ),
       )
+
+
           : Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
@@ -145,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Text('Loading'),
         ],
       ),
+    ));
 
-    );
   }
 }
