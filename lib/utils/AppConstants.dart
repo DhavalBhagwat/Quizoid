@@ -3,6 +3,6 @@ import 'package:flutter/cupertino.dart';
 
 class AppConstants {
   static const String APP_NAME = "Quizoid";
-  static const String appVersion = "v0.0.4(1)";
+  static const String appVersion = "v0.0.5(1)";
   static bool isNoteShown = false;
 }

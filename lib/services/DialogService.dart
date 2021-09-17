@@ -35,12 +35,12 @@ class DialogService {
     );
   }
 
-  void notesBottomDialog(BuildContext context, {VideoPlayerController? controller, String? note = ""}) {
-    showModalBottomSheet(
-        elevation: 10,
-        backgroundColor: Colors.amber,
-        context: context,
-        builder: (ctx) => NotesBottomDialog(context: ctx, controller: controller, note: note)
+  void notesBottomDialog({String? note = "", VideoPlayerController? controller}) {
+    Get.bottomSheet(
+      NotesBottomDialog(controller: controller, note: note),
+      barrierColor: AppTheme.transparent,
+      backgroundColor: AppTheme.transparent,
+      isDismissible: false,
     );
   }
 
