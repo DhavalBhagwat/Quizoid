@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:app/ui/dialogs/lib.dart';
+import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
+import 'package:app/ui/dialogs/lib.dart';
+import 'package:app/utils/lib.dart';
 
 class DialogService {
 
@@ -25,17 +27,21 @@ class DialogService {
   // }
 
   void notesDialog(BuildContext context, {VideoPlayerController? controller}) {
-    showDialog(
+    Get.defaultDialog(
+        title: "",
+        backgroundColor:AppTheme.transparent,
         barrierDismissible: false,
-        context: context,
-        builder: (BuildContext context) => NotesDialog(context: context, controller: controller)
+        content: NotesDialog(context: context, controller: controller)
     );
   }
 
-
-// void addNotes(BuildContext context, ENotes note) async {
-//   await   _manager!.userDao.insertNote(ENotes(videoId: "1234", noteId: _videoController?.value.position.inSeconds.toString(), noteContent: "HHELLO WORLD"));
-//
-// }
+  void notesBottomDialog(BuildContext context, {VideoPlayerController? controller, String? note = ""}) {
+    showModalBottomSheet(
+        elevation: 10,
+        backgroundColor: Colors.amber,
+        context: context,
+        builder: (ctx) => NotesBottomDialog(context: ctx, controller: controller, note: note)
+    );
+  }
 
 }

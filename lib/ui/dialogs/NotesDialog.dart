@@ -38,104 +38,99 @@ class _NotesDialogState extends State<NotesDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-      elevation: 4.0,
-      backgroundColor: AppTheme.lightBackground,
-      child: Container(
-        padding: EdgeInsets.only(top: 4, left: 16, right: 16, bottom: 16),
-        decoration: BoxDecoration(
-          color: AppTheme.lightBackground,
-          shape: BoxShape.rectangle,
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        child: ListView(
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text(Strings.create),
-                ),
-                Container(
-                  child: IconButton(
-                      icon: Icon(Icons.clear),
-                      color: AppTheme.grey,
-                      onPressed: () => _dismiss(context)
-                  ),
-                  transform: Matrix4.translationValues(12, 0, 0),
-                ),
-              ],
-            ),
-
-            SizedBox(height: 8.0),
-
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
-                color: AppTheme.nearlyWhite,
+    return Container(
+      padding: EdgeInsets.only(top: 4, left: 16, right: 16, bottom: 16),
+      decoration: BoxDecoration(
+        color: AppTheme.lightBackground,
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: ListView(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(Strings.create),
               ),
-              margin: EdgeInsets.symmetric(vertical: 5),
-              width: double.maxFinite,
-              padding: EdgeInsets.symmetric(horizontal: 5),
-              child: TextFormField(
-                controller: _remark,
-                keyboardType: TextInputType.multiline,
-                maxLines: 5,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: Strings.insert_text_here,
+              Container(
+                child: IconButton(
+                    icon: Icon(Icons.clear),
+                    color: AppTheme.grey,
+                    onPressed: () => _dismiss(context)
                 ),
+                transform: Matrix4.translationValues(12, 0, 0),
+              ),
+            ],
+          ),
+
+          SizedBox(height: 8.0),
+
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              color: AppTheme.nearlyWhite,
+            ),
+            margin: EdgeInsets.symmetric(vertical: 5),
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            child: TextFormField(
+              controller: _remark,
+              keyboardType: TextInputType.multiline,
+              maxLines: 5,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: Strings.insert_text_here,
               ),
             ),
+          ),
 
-            SizedBox(height: 8.0),
+          SizedBox(height: 8.0),
 
-            Row(
-              children: [
-                Container(
-                  child: TextButton(
-                    onPressed: () {
-                      //TODO : add snack
-                      print("COMING SOON");
-                    },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(Icons.image_outlined),
-                        Text(Strings.upload_attachments)
-                      ],
-                    ),
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all(AppTheme.nearlyBlack),
-                      backgroundColor: MaterialStateProperty.all<Color>(AppTheme.transparent),
-                    ),
+          Row(
+            children: [
+              Container(
+                child: TextButton(
+                  onPressed: () {
+                    //TODO : add snack
+                    print("COMING SOON");
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Icon(Icons.image_outlined),
+                      Text(Strings.upload_attachments)
+                    ],
                   ),
-                ),
-                Spacer(),
-              ],
-            ),
-
-            Row(
-              children: [
-                TextButton(
                   style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all(AppTheme.darkGrey),
+                    foregroundColor: MaterialStateProperty.all(AppTheme.nearlyBlack),
                     backgroundColor: MaterialStateProperty.all<Color>(AppTheme.transparent),
                   ),
-                  onPressed: () async => _addNote(context),
-                  child: Text(
-                    Strings.save,
-                    style: TextStyle(fontSize: 16.0),
-                  ),
                 ),
-                Spacer(),
-              ],
-            ),
-          ],
-        ),
+              ),
+              Spacer(),
+            ],
+          ),
+
+          Row(
+            children: [
+              TextButton(
+                style: ButtonStyle(
+                  foregroundColor: MaterialStateProperty.all(AppTheme.darkGrey),
+                  backgroundColor: MaterialStateProperty.all<Color>(AppTheme.transparent),
+                ),
+                onPressed: () async => _addNote(context),
+                child: Text(
+                  Strings.save,
+                  style: TextStyle(fontSize: 16.0),
+                ),
+              ),
+              Spacer(),
+            ],
+          ),
+        ],
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:app/utils/lib.dart';
 import 'package:app/navigation/lib.dart';
@@ -19,6 +20,7 @@ class _App extends State<App> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+        builder: EasyLoading.init(),
         debugShowCheckedModeBanner: false,
         scrollBehavior: ScrollPhysicsBehaviour(),
         initialRoute: '/',
