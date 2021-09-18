@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 import 'package:app/data/bloc/lib.dart';
@@ -8,14 +9,12 @@ import 'package:app/db/lib.dart';
 import 'package:app/services/lib.dart';
 import 'package:app/ui/widgets/lib.dart';
 import 'package:app/utils/lib.dart';
+import 'package:app/ui/interfaces/lib.dart';
 
 class VideoActivity extends StatefulWidget {
 
-  final String? videoId;
-
   const VideoActivity({
     Key? key,
-    this.videoId = "VID0001",
   }) : super(key: key);
 
   @override
@@ -23,7 +22,7 @@ class VideoActivity extends StatefulWidget {
 
 }
 
-class _VideoActivityState extends State<VideoActivity> {
+class _VideoActivityState extends State<VideoActivity> implements IVideoListener {
 
   static const _TAG = "VideoActivity";
   Logger _logger = Logger.getInstance;
@@ -33,40 +32,49 @@ class _VideoActivityState extends State<VideoActivity> {
   NotesProvider? _provider;
   List<String> _noteIdList = [];
   List<ENotes> _notesList = [];
+  Future<void>? _isPlayerInitialized;
+  String? _videoId, _url;
 
   @override
   void initState() {
+    _url = Get.arguments["url"];
+    _videoId = Get.arguments["videoId"];
     _provider = NotesProvider.getInstance;
-    _initializePlayer();
+    _isPlayerInitialized = _initializePlayer();
     _getAssignedNotes();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          // Here we take the value from the VideoActivity object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: Text("Flutter Demo Home Page"),
+    return ActivityContainer(
+        context: context,
+        onBackPressed: Navigator.of(context).pop,
+        title: "title",
+        child: FutureBuilder<void>(
+            future: _isPlayerInitialized,
+            builder: (context, snapshot) {
+              return snapshot.connectionState == ConnectionState.done ? Column(
+                children: [
+                  Expanded(
+                      flex: 2,
+                      child: VideoPlayerView(
+                          activityContext: context,
+                          chewieController: _chewieController
+                      ),
+                  ),
+                  Expanded(
+                    flex: 4,
+                    child: Container(
+                      color: AppTheme.lightBlue,
+                    ),
+                  )
+                ],
+              ) : LoadingIndicator();
+            },
         ),
-        body: Column(
-          children: [
-            Expanded(
-                flex: 2,
-                child: VideoPlayerView(
-                  activityContext: context,
-        chewieController: _chewieController)),
-    Expanded(
-      flex: 4,
-      child: Container(color: AppTheme.lightBlue,),
-
-    )
-
-          ],
-        ));
+    );
   }
-
 
   void _getAssignedNotes() async {
     try {
@@ -90,7 +98,7 @@ class _VideoActivityState extends State<VideoActivity> {
   }
 
   Future<void> _initializePlayer() async {
-    _videoController = VideoPlayerController.network("https://assets.mixkit.co/videos/preview/mixkit-daytime-city-traffic-aerial-view-56-large.mp4")..addListener(_getNotesBasedOnDuration);
+    _videoController = VideoPlayerController.network(_url!)..addListener(videoNotesListener)..addListener(videoDurationListener);
     await _videoController!.initialize().then((_) {
       setState(() {
         _videoController!.play();
@@ -99,21 +107,12 @@ class _VideoActivityState extends State<VideoActivity> {
     _chewieController = ChewieController(
       videoPlayerController: _videoController!,
       autoPlay: true,
-      looping: true,
-      showControls: true,
       autoInitialize: true,
       aspectRatio: 16 / 9,
-      placeholder: Column(
-        //TODO add loading
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          CircularProgressIndicator(),
-          SizedBox(height: 20),
-        ],
-      ),
+      placeholder: LoadingIndicator(),
       materialProgressColors: ChewieProgressColors(
         playedColor: Colors.red,
-        handleColor: Colors.blue,
+        handleColor: Colors.blue,//TODO add colors
         backgroundColor: Colors.grey,
         bufferedColor: Colors.lightGreen,
       ),
@@ -129,7 +128,7 @@ class _VideoActivityState extends State<VideoActivity> {
         onTap: () async {
           print(_chewieController!.videoPlayerController.value.position.inSeconds.toString());
           _chewieController?.videoPlayerController.pause();
-          _provider?.videoId = widget.videoId.toString();
+          _provider?.videoId = _videoId!;
           _provider?.noteId = _chewieController!.videoPlayerController.value.position.inSeconds.toString();
           Navigator.pop(context);
           DialogService.getInstance.notesDialog(context, controller: _chewieController?.videoPlayerController);
@@ -140,24 +139,42 @@ class _VideoActivityState extends State<VideoActivity> {
     ];
   }
 
-  void _getNotesBasedOnDuration() {
-    String? second = _chewieController?.videoPlayerController.value.position.inSeconds.toString();
-    if (_noteIdList.contains(second)) {
-      Future.delayed(Duration(milliseconds: 1000), () {
-        if (!AppConstants.isNoteShown) {
-          AppConstants.isNoteShown = true;
-          _chewieController?.videoPlayerController.pause();
-          _manager?.userDao.getNote(second!, widget.videoId!).then((note) {
-            DialogService.getInstance.notesBottomDialog(controller: _chewieController?.videoPlayerController, note: note?.noteContent);
-          });
-        }
-      });
+  @override
+  void videoDurationListener() async {
+    try {
+      if (_chewieController!.videoPlayerController.value.isInitialized && _chewieController?.videoPlayerController.value.position == _chewieController?.videoPlayerController.value.duration) {
+        NavigationService.getInstance.quizActivity();
+      }
+    } catch (error) {
+      _logger.d(_TAG, "videoNotesListener()");
     }
   }
 
   @override
+  void videoNotesListener() {
+    try {
+      String? second = _chewieController?.videoPlayerController.value.position.inSeconds.toString();
+      if (_noteIdList.contains(second)) {
+        Future.delayed(Duration(milliseconds: 1000), () {
+          if (!AppConstants.isNoteShown) {
+            AppConstants.isNoteShown = true;
+            _chewieController?.videoPlayerController.pause();
+            _manager?.userDao.getNote(second!, _videoId!).then((note) {
+              DialogService.getInstance.notesBottomDialog(controller: _chewieController?.videoPlayerController, note: note?.noteContent);
+            });
+          }
+        });
+      }
+    } catch (error) {
+      _logger.e(_TAG, "videoNotesListener()", message: error.toString());
+    }
+
+  }
+
+  @override
   void dispose() {
-     _videoController?.removeListener(_getNotesBasedOnDuration);
+    _videoController?.removeListener(videoNotesListener);
+    _videoController?.removeListener(videoDurationListener);
     _videoController?.dispose();
     _chewieController?.dispose();
     super.dispose();

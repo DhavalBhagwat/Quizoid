@@ -16,9 +16,7 @@ class VideoPlayerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: chewieController != null && chewieController!.videoPlayerController.value.isInitialized
-          ? Chewie(controller: chewieController!)
-          : CircularProgressIndicator() //TODO override with theme colors
+      child: Chewie(controller: chewieController!)
     );
   }
 
