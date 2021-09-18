@@ -1,3 +1,4 @@
+import 'package:app/data/podos/lib.dart';
 import 'package:get/get.dart';
 
 class NavigationService {
@@ -13,7 +14,7 @@ class NavigationService {
     return _instance!;
   }
 
-  void videoActivity({String videoId = "", String url = ""}) => Get.toNamed('/videoActivity', arguments: {'videoId': videoId, 'url': url});
+  void videoActivity(VideoCategory category) => Get.toNamed('/videoActivity', arguments: {'category': category});
 
   void dashboardActivity() => Get.toNamed('/dashboardActivity');
 
