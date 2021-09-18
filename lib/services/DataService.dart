@@ -21,7 +21,7 @@ class DataService {
   }
 
   Future<void> addNote(BuildContext context) async {
-    DatabaseHelper.getInstance.then((manager) {
+    await DatabaseHelper.getInstance.then((manager) {
       NotesProvider provider = NotesProvider.getInstance;
       manager.userDao.insertNote(ENotes(videoId: provider.videoId, noteId: provider.noteId, noteContent: provider.noteContent));
     }).catchError((error) {

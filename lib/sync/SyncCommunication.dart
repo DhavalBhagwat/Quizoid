@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:app/utils/lib.dart';
 
 class SyncCommunication {
@@ -15,5 +16,12 @@ class SyncCommunication {
     return _instance!;
   }
 
+  Future<DataSnapshot> getCategories() async {
+    return await FirebaseDatabase.instance.reference().child("categories").once();
+  }
+
+  Future<DataSnapshot> getQuestions(String quizName) async {
+    return await FirebaseDatabase.instance.reference().child(quizName).once();
+  }
 
 }

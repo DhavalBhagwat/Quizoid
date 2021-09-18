@@ -10,6 +10,7 @@ import 'package:app/services/lib.dart';
 import 'package:app/ui/widgets/lib.dart';
 import 'package:app/utils/lib.dart';
 import 'package:app/ui/interfaces/lib.dart';
+import 'package:app/data/podos/lib.dart';
 
 class VideoActivity extends StatefulWidget {
 
@@ -33,15 +34,14 @@ class _VideoActivityState extends State<VideoActivity> implements IVideoListener
   List<String> _noteIdList = [];
   List<ENotes> _notesList = [];
   Future<void>? _isPlayerInitialized;
-  String? _videoId, _url;
+  VideoCategory? _category;
 
   @override
   void initState() {
-    _url = Get.arguments["url"];
-    _videoId = Get.arguments["videoId"];
+    _category = Get.arguments["category"];
     _provider = NotesProvider.getInstance;
-    _isPlayerInitialized = _initializePlayer();
-    _getAssignedNotes();
+    _isPlayerInitialized = initializePlayer();
+    getAssignedNotes();
     super.initState();
   }
 
@@ -50,7 +50,7 @@ class _VideoActivityState extends State<VideoActivity> implements IVideoListener
     return ActivityContainer(
         context: context,
         onBackPressed: Navigator.of(context).pop,
-        title: "title",
+        title: _category?.name,
         child: FutureBuilder<void>(
             future: _isPlayerInitialized,
             builder: (context, snapshot) {
@@ -59,14 +59,18 @@ class _VideoActivityState extends State<VideoActivity> implements IVideoListener
                   Expanded(
                       flex: 2,
                       child: VideoPlayerView(
-                          activityContext: context,
-                          chewieController: _chewieController
+                        activityContext: context,
+                        chewieController: _chewieController
                       ),
                   ),
                   Expanded(
                     flex: 4,
-                    child: Container(
-                      color: AppTheme.lightBlue,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("SOME RANDOM TEXT"),
+                        Text("SOME RANDOM TEXT")
+                      ],
                     ),
                   )
                 ],
@@ -76,13 +80,14 @@ class _VideoActivityState extends State<VideoActivity> implements IVideoListener
     );
   }
 
-  void _getAssignedNotes() async {
+  @override
+  void getAssignedNotes() async {
     try {
       _logger.d(_TAG, "getAssignedNotes()", message: "Getting assigned notes if any");
       if (_notesList.isNotEmpty) _notesList.clear();
       if (_noteIdList.isNotEmpty) _noteIdList.clear();
       _manager = await DatabaseHelper.getInstance;
-      await _manager!.userDao.getNotesList("VID0001").then((response) {
+      await _manager!.userDao.getNotesList(_category!.videoId).then((response) {
         if (response.isNotEmpty) {
           _notesList = response;
           for (ENotes note in response) {
@@ -90,15 +95,15 @@ class _VideoActivityState extends State<VideoActivity> implements IVideoListener
           }
           print(_noteIdList.toString());
         }
-        else print("EMPTY !!!!!!!!!!!!!!!!!!!!!!!!!");
       });
     } catch (error) {
       _logger.d(_TAG, "getAssignedNotes()", message: error.toString());
     }
   }
 
-  Future<void> _initializePlayer() async {
-    _videoController = VideoPlayerController.network(_url!)..addListener(videoNotesListener)..addListener(videoDurationListener);
+  @override
+  Future<void> initializePlayer() async {
+    _videoController = VideoPlayerController.network(_category!.videoUrl)..addListener(videoNotesListener)..addListener(videoDurationListener);
     await _videoController!.initialize().then((_) {
       setState(() {
         _videoController!.play();
@@ -117,21 +122,26 @@ class _VideoActivityState extends State<VideoActivity> implements IVideoListener
         bufferedColor: Colors.lightGreen,
       ),
       //showOptions: false,
-      additionalOptions: (BuildContext optionsContext) => _getVideoOptions(optionsContext),
+      additionalOptions: (BuildContext optionsContext) => getVideoOptions(optionsContext),
       customControls: MaterialControls(),
     );
   }
 
-  List<OptionItem> _getVideoOptions(BuildContext context) {
+  @override
+  List<OptionItem> getVideoOptions(BuildContext context) {
     return [
       OptionItem(
         onTap: () async {
           print(_chewieController!.videoPlayerController.value.position.inSeconds.toString());
           _chewieController?.videoPlayerController.pause();
-          _provider?.videoId = _videoId!;
+          _provider?.videoId = _category!.videoId;
           _provider?.noteId = _chewieController!.videoPlayerController.value.position.inSeconds.toString();
           Navigator.pop(context);
-          DialogService.getInstance.notesDialog(context, controller: _chewieController?.videoPlayerController);
+          DialogService.getInstance.notesDialog(
+              context,
+              controller: _chewieController?.videoPlayerController,
+              callback: getAssignedNotes
+          );
         },
         iconData: Icons.assignment_outlined,
         title: Strings.add_note,
@@ -143,7 +153,9 @@ class _VideoActivityState extends State<VideoActivity> implements IVideoListener
   void videoDurationListener() async {
     try {
       if (_chewieController!.videoPlayerController.value.isInitialized && _chewieController?.videoPlayerController.value.position == _chewieController?.videoPlayerController.value.duration) {
-        NavigationService.getInstance.quizActivity();
+        Future.delayed(Duration(milliseconds: 1000), () {
+          NavigationService.getInstance.quizActivity(_category!);
+        });
       }
     } catch (error) {
       _logger.d(_TAG, "videoNotesListener()");
@@ -159,7 +171,7 @@ class _VideoActivityState extends State<VideoActivity> implements IVideoListener
           if (!AppConstants.isNoteShown) {
             AppConstants.isNoteShown = true;
             _chewieController?.videoPlayerController.pause();
-            _manager?.userDao.getNote(second!, _videoId!).then((note) {
+            _manager?.userDao.getNote(second!, _category!.videoId).then((note) {
               DialogService.getInstance.notesBottomDialog(controller: _chewieController?.videoPlayerController, note: note?.noteContent);
             });
           }
@@ -168,7 +180,6 @@ class _VideoActivityState extends State<VideoActivity> implements IVideoListener
     } catch (error) {
       _logger.e(_TAG, "videoNotesListener()", message: error.toString());
     }
-
   }
 
   @override

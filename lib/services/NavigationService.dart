@@ -1,4 +1,5 @@
 import 'package:app/data/podos/lib.dart';
+import 'package:app/utils/lib.dart';
 import 'package:get/get.dart';
 
 class NavigationService {
@@ -14,10 +15,21 @@ class NavigationService {
     return _instance!;
   }
 
-  void videoActivity(VideoCategory category) => Get.toNamed('/videoActivity', arguments: {'category': category});
+  void videoActivity(VideoCategory category) {
+    AppConstants.quizTopic = category.name;
+    Get.toNamed('/videoActivity', arguments: {'category': category});
+  }
 
-  void dashboardActivity() => Get.toNamed('/dashboardActivity');
+  void dashboardActivity() {
+    AppConstants.quizTopic = "";
+    Get.toNamed('/dashboardActivity');
+  }
 
-  void quizActivity() => Get.toNamed('/quizActivity');
+  void quizActivity(VideoCategory category) {
+    AppConstants.quizTopic = category.name;
+    Get.toNamed('/quizActivity', arguments: {'category': category});
+  }
+
+  void quizFinishedActivity(List<Question> questions, Map<int, dynamic> answers) => Get.toNamed('/quizFinishedActivity', arguments: {'questions': questions, 'answers': answers});
 
 }

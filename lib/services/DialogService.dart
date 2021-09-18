@@ -18,7 +18,7 @@ class DialogService {
     return _instance!;
   }
 
-  // void loadingDialog(BuildContext context, {String message = ""}) {
+  // void loadingDialog(BuildContext context, {String message = ""}) { TODO
   //   showDialog(
   //       barrierDismissible: false,
   //       context: context,
@@ -26,12 +26,21 @@ class DialogService {
   //   );
   // }
 
-  void notesDialog(BuildContext context, {VideoPlayerController? controller}) {
+  void notesDialog(BuildContext context, {VideoPlayerController? controller, Function? callback}) {
     Get.defaultDialog(
         title: "",
         backgroundColor:AppTheme.transparent,
         barrierDismissible: false,
-        content: NotesDialog(context: context, controller: controller)
+        content: NotesDialog(context: context, controller: controller, callback: callback)
+    );
+  }
+
+  void exitQuizDialog() {
+    Get.defaultDialog(
+        title: "",
+        backgroundColor:AppTheme.transparent,
+        barrierDismissible: false,
+        content: ExitQuizDialog()
     );
   }
 

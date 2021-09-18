@@ -11,10 +11,12 @@ class NotesDialog extends StatefulWidget {
 
   final BuildContext? context;
   final VideoPlayerController? controller;
+  final Function? callback;
 
   NotesDialog({
     @required this.context,
     @required this.controller,
+    this.callback,
   });
 
   @override
@@ -141,6 +143,7 @@ class _NotesDialogState extends State<NotesDialog> {
       _provider?.noteContent = _remark!.value.text.toString();
       await DataService.getInstance.addNote(context);
       await EasyLoading.dismiss();
+      widget.callback!();
       _dismiss(context);
     } catch (error) {
       _logger.e(_TAG, "addNote()", message: error.toString());

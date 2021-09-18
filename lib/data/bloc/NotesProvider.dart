@@ -16,7 +16,7 @@ class NotesProvider extends ChangeNotifier {
     return _instance!;
   }
 
-  int? _id;
+  int? _id = -1;
   String? _videoId = "";
   String? _noteId = "";
   String? _noteContent = "";
