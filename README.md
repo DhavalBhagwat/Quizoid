@@ -2,10 +2,19 @@
 
 A TATA ClassEdge [demo app](https://github.com/classedge/demo-app/tree/main/assign1).
 
-**Use the following commands to setup**
+## Setup
+**Android**
 ```
-git clone https://github.com/DhavalBhagwat/Quizoid.git
-flutter packages pub run build_runner build --delete-conflicting-outputs
+1. git clone https://github.com/DhavalBhagwat/Quizoid.git
+2. flutter packages pub run build_runner build --delete-conflicting-outputs
+```
+
+**iOS only**
+```
+1. git clone https://github.com/DhavalBhagwat/Quizoid.git
+2. flutter packages pub run build_runner build --delete-conflicting-outputs
+3. cd ios
+4. pod install
 ```
 
 ## Packages used
@@ -21,3 +30,6 @@ flutter packages pub run build_runner build --delete-conflicting-outputs
 
 ## Usage
 You will find the android apk in the [Releases](https://github.com/DhavalBhagwat/Quizoid/releases) section. From there you can use it to run on your mobile directly
+
+## Please find the tasks status [here](https://github.com/DhavalBhagwat/Quizoid/issues/6)
+
