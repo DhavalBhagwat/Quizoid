@@ -17,19 +17,19 @@ class NavigationService {
 
   void videoActivity(VideoCategory category) {
     AppConstants.quizTopic = category.name;
-    Get.toNamed('/videoActivity', arguments: {'category': category});
+    Get.offNamed('/videoActivity', arguments: {'category': category});
   }
 
   void dashboardActivity() {
     AppConstants.quizTopic = "";
-    Get.toNamed('/dashboardActivity');
+    Get.offNamed('/dashboardActivity');
   }
 
   void quizActivity(VideoCategory category) {
     AppConstants.quizTopic = category.name;
-    Get.toNamed('/quizActivity', arguments: {'category': category});
+    Get.offNamed('/quizActivity', arguments: {'category': category});
   }
 
-  void quizFinishedActivity(List<Question> questions, Map<int, dynamic> answers) => Get.toNamed('/quizFinishedActivity', arguments: {'questions': questions, 'answers': answers});
+  void scoreActivity() => Get.offNamed('/scoreActivity');
 
 }

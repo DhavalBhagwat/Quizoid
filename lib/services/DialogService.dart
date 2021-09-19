@@ -53,4 +53,8 @@ class DialogService {
     );
   }
 
+  void answerDialog({String? answer = "", bool? isCorrect = false, Function? callback}) {
+    Get.toNamed('/answerDialog', arguments: {'answer': answer, 'isCorrect': isCorrect, 'callback': callback});
+  }
+
 }
