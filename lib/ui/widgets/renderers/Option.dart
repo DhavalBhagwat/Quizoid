@@ -24,20 +24,16 @@ class Option extends StatelessWidget {
       builder: (QuestionController controller) => InkWell(
         onTap: onTap,
         child: Container(
-          margin: EdgeInsets.only(top: 20.0),
           padding: EdgeInsets.all(20.0),
           decoration: BoxDecoration(
             border: Border.all(color: AppTheme.grey),
             borderRadius: BorderRadius.circular(15),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "${index! + 1}. $text",
-                style: TextStyle(color: AppTheme.grey, fontSize: 16),
-              ),
-            ],
+          child: Text(
+            "${index! + 1}. $text",
+            style: TextStyle(color: AppTheme.grey, fontSize: 16),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 4,
           ),
         ),
       ),

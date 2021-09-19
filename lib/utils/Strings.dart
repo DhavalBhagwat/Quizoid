@@ -12,4 +12,10 @@ class Strings {
   static const String score = "Score";
   static const String next_question = "Get ready in";
   static const String go_back = "Go Back";
+  static const String dismiss = "Dismiss";
+  static const String yes = "Yes";
+  static const String no = "No";
+  static const String warning = "Warning!";
+  static const String quit_quiz = "Are you sure you want to quit the quiz? All your progress will be lost.";
+  static const String no_questions_answered = "No questions answered";
 }

@@ -34,25 +34,21 @@ class _DashboardActivityState extends State<DashboardActivity> {
         title: Strings.select_category,
         isBackAvailable: false,
         onBackPressed: () => Navigator.of(context).pop(),
-        child: Obx(() => _controller!.isLoading.value
-            ? LoadingIndicator()
-            : Container(
-                color: AppTheme.colorPrimaryLight,
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 12.0,
-                    crossAxisSpacing: 12.0,
-                    childAspectRatio: 1.0,
-                  ),
-                  padding: EdgeInsets.all(16.0),
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: _controller?.categoryList.length,
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (BuildContext context, int index) => CategoryItem(category: _controller?.categoryList[index]),
-                ),
+        child: Obx(() => Container(
+          color: AppTheme.colorPrimaryLight,
+          child: _controller!.isLoading.value ? LoadingIndicator() : GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 12.0,
+              crossAxisSpacing: 12.0,
+              childAspectRatio: 1.0,
             ),
-        ),
+            padding: EdgeInsets.all(16.0),
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: _controller?.categoryList.length,
+            itemBuilder: (BuildContext context, int index) => CategoryItem(category: _controller?.categoryList[index]),
+          ),
+        )),
     );
   }
 

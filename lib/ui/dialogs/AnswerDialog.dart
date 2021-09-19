@@ -34,29 +34,26 @@ class _AnswerDialogState extends State<AnswerDialog> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppTheme.background,
+      color: AppTheme.colorPrimaryLight,
       child: Center(
         child: Align(
           alignment: Alignment.bottomCenter,
           child: SlideTransition(
             position: _offset!,
-            child: Padding(
-              padding: EdgeInsets.all(50.0),
-              child: Column(
-                children: [
-                  Lottie.asset(_isCorrect! ? Assets.CORRECT : Assets.INCORRECT),
-                  SizedBox(height: 12.0),
-                  Text(
-                    "$_answer is $_result",
-                    style: TextStyle(fontSize: 24.0, fontStyle: FontStyle.italic),
-                  ) ,
-                  SizedBox(height: 12.0),
-                  Text(
-                    "${Strings.next_question} $_start",
-                    style: TextStyle(fontSize: 20.0),
-                  )
-                ],
-              ),
+            child: Column(
+              children: [
+                Lottie.asset(_isCorrect! ? Assets.CORRECT : Assets.INCORRECT),
+                SizedBox(height: 12.0),
+                Text(
+                  "$_answer is $_result",
+                  style: TextStyle(fontSize: 24.0, fontStyle: FontStyle.italic),
+                ),
+                SizedBox(height: 12.0),
+                Text(
+                  "${Strings.next_question} $_start",
+                  style: TextStyle(fontSize: 20.0),
+                )
+              ],
             ),
           ),
         ),

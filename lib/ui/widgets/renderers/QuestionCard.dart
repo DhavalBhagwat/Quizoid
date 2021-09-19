@@ -8,10 +8,14 @@ import 'package:app/ui/widgets/lib.dart';
 class QuestionCard extends StatelessWidget {
 
   final Question? question;
+  final bool? isList;
+  final bool? isVertical;
 
   const QuestionCard({
     Key? key,
     @required this.question,
+    this.isList = true,
+    this.isVertical = true,
   }) : super(key: key);
 
   @override
@@ -20,20 +24,27 @@ class QuestionCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20.0),
       padding: EdgeInsets.all(20.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(25),
-      ),
       child: Column(
         children: [
           Text(question!.question!),
           SizedBox(height: 10.0),
-          ...List.generate(
-            question!.options!.length,
-            (index) => Option(
-              index: index,
-              text: question!.options![index],
-              onTap: () => _controller.checkAnswer(question!, index),
+          Expanded(
+            child: GridView.builder(
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: isList! ? 1 : 2,
+                mainAxisSpacing: 20.0,
+                crossAxisSpacing: 12.0,
+                childAspectRatio: isList! ? 4 : 1,
+              ),
+              padding: EdgeInsets.all(16.0),
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: question!.options!.length,
+              itemBuilder: (BuildContext context, int index) => Option(
+                index: index,
+                text: question!.options![index],
+                onTap: () => _controller.checkAnswer(question!, index),
+              ),
             ),
           ),
         ],
