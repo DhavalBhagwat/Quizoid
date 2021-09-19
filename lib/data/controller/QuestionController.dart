@@ -54,6 +54,9 @@ class QuestionController extends GetxController with SingleGetTickerProviderMixi
     questions.clear();
     _animationController?.dispose();
     pageController?.dispose();
+    questionNumber(1);
+    _numOfCorrectAns = 0;
+    _isAnswered = false;
     super.onClose();
   }
 

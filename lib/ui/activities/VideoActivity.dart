@@ -109,6 +109,8 @@ class _VideoActivityState extends State<VideoActivity> implements IVideoListener
       });
     } catch (error) {
       _logger.d(_TAG, "getAssignedNotes()", message: error.toString());
+    } finally {
+      print(_noteIdList.toString());
     }
   }
 

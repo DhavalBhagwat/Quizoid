@@ -67,7 +67,7 @@ class _ScoreActivityState extends State<ScoreActivity> {
                 child: Text(Strings.go_back),
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all(AppTheme.nearlyBlack),
-                  backgroundColor: MaterialStateProperty.all<Color>(AppTheme.lightYellow),
+                  backgroundColor: MaterialStateProperty.all<Color>(AppTheme.colorPrimaryLight),
                 ),
               ),
               Spacer(flex: 3),

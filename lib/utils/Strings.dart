@@ -12,4 +12,5 @@ class Strings {
   static const String score = "Score";
   static const String next_question = "Get ready in";
   static const String go_back = "Go Back";
+  static const String dismiss = "Dismiss";
 }
