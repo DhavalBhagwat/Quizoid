@@ -1,6 +1,6 @@
+import 'package:get/get.dart';
 import 'package:app/data/podos/lib.dart';
 import 'package:app/utils/lib.dart';
-import 'package:get/get.dart';
 
 class NavigationService {
 
@@ -30,6 +30,9 @@ class NavigationService {
     Get.offNamed('/quizActivity', arguments: {'category': category});
   }
 
-  void scoreActivity() => Get.offNamed('/scoreActivity');
+  void scoreActivity(int? correctAns, int? length, List<Map<int, int>>? answersMap) {
+    AppConstants.quizTopic = "";
+    Get.offNamed('/scoreActivity', arguments: {'correctAns': correctAns, 'length': length, 'answersMap': answersMap});
+  }
 
 }

@@ -6,3 +6,4 @@ export 'AppTheme.dart';
 export 'AppConstants.dart';
 export 'ScrollPhysicsBehaviour.dart';
 export 'VideoUtils.dart';
+export 'Assets.dart';

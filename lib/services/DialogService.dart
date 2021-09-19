@@ -18,14 +18,6 @@ class DialogService {
     return _instance!;
   }
 
-  // void loadingDialog(BuildContext context, {String message = ""}) { TODO
-  //   showDialog(
-  //       barrierDismissible: false,
-  //       context: context,
-  //       builder: (BuildContext context) => LoadingDialog(context: context, message: message)
-  //   );
-  // }
-
   void notesDialog(BuildContext context, {VideoPlayerController? controller, Function? callback}) {
     Get.defaultDialog(
         title: "",

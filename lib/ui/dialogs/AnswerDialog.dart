@@ -82,14 +82,14 @@ class _AnswerDialogState extends State<AnswerDialog> with SingleTickerProviderSt
 
   void _startTimer() {
     _controller?.forward();
-    const oneSec = const Duration(seconds: 1);
+    const oneSec =  Duration(seconds: 1);
     _timer = Timer.periodic(
       oneSec, (Timer timer) {
         if (_start == 0) {
           setState(() {
             timer.cancel();
-            _callback!();
             Get.back();
+            _callback!();
           });
         } else setState(() => _start--);
       },

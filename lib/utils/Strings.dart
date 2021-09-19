@@ -9,4 +9,5 @@ class Strings {
   static const String cancel = "Create";
   static const String select_category = "Select Category";
   static const String quiz = "Quiz";
+  static const String next_question = "Get ready in";
 }
