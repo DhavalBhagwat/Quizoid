@@ -6,19 +6,17 @@ class ActivityContainer extends StatelessWidget {
 
   final BuildContext? context;
   final Function? onBackPressed;
-  final Widget? actions;
   final String? title;
   final Widget? child;
-  final Widget? bottomNavigationBar;
+  final bool? isBackAvailable;
 
   ActivityContainer({
     Key? key,
     @required this.context,
     @required this.onBackPressed,
-    this.actions,
+    this.isBackAvailable = true,
     @required this.title,
     @required this.child,
-    this.bottomNavigationBar,
   }) : super(key: key);
 
   @override
@@ -30,20 +28,16 @@ class ActivityContainer extends StatelessWidget {
           backgroundColor: AppTheme.background,
           appBar: CupertinoNavigationBar(
             backgroundColor: AppTheme.colorPrimary,
-            leading: InkWell(
+            leading: isBackAvailable! ? InkWell(
               child: Icon(
                 Icons.arrow_back_ios,
                 color: AppTheme.nearlyWhite,
               ),
               onTap: () => onBackPressed!(),
-            ),
-            middle: Text(
-              title!,
-            ),
-            trailing: actions,
+            ) : Container(),
+            middle: Text(title!),
           ),
           body: child,
-          bottomNavigationBar: bottomNavigationBar != null ? bottomNavigationBar : null,
         ),
       ),
     );

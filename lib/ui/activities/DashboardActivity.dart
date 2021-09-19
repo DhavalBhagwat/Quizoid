@@ -1,11 +1,15 @@
-import 'dart:async';
-import 'package:app/services/NavigationService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:app/services/lib.dart';
+import 'package:get/get.dart';
+import 'package:app/ui/widgets/lib.dart';
+import 'package:app/data/controller/lib.dart';
 import 'package:app/utils/lib.dart';
 
 class DashboardActivity extends StatefulWidget {
+
+  DashboardActivity({
+    Key? key
+  }) : super(key: key);
 
   @override
   _DashboardActivityState createState() => _DashboardActivityState();
@@ -15,16 +19,40 @@ class DashboardActivity extends StatefulWidget {
 class _DashboardActivityState extends State<DashboardActivity> {
 
   static const String _TAG = "DashboardActivity";
+  CategoryController? _controller;
+
+  @override
+  void initState() {
+    _controller = Get.put(CategoryController());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-child:         TextButton(onPressed: () { NavigationService.getInstance.videoActivity(
-  videoId: "VID0001",
-  url: "https://assets.mixkit.co/videos/preview/mixkit-daytime-city-traffic-aerial-view-56-large.mp4"
-); }, child: Text("VIDEO PRESS"),)
-        ,      ),
+    return ActivityContainer(
+        context: context,
+        title: Strings.select_category,
+        isBackAvailable: false,
+        onBackPressed: () => Navigator.of(context).pop(),
+        child: Obx(() => _controller!.isLoading.value
+            ? LoadingIndicator()
+            : Container(
+                color: AppTheme.colorPrimaryLight,
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 12.0,
+                    crossAxisSpacing: 12.0,
+                    childAspectRatio: 1.0,
+                  ),
+                  padding: EdgeInsets.all(16.0),
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: _controller?.categoryList.length,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (BuildContext context, int index) => CategoryItem(category: _controller?.categoryList[index]),
+                ),
+            ),
+        ),
     );
   }
 
