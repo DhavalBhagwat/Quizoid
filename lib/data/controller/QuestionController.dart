@@ -90,7 +90,10 @@ class QuestionController extends GetxController with SingleGetTickerProviderMixi
           _isAnswered = false;
           _resetAnimation();
         } else NavigationService.getInstance.scoreActivity(_numOfCorrectAns, questions.length, answersMap);
-      } else _resetAnimation(forward: false);
+      } else {
+        _isAnswered = false;
+        _resetAnimation(forward: false);
+      }
     } else questionNumber.value == questions.length ? NavigationService.getInstance.scoreActivity(_numOfCorrectAns, questions.length, answersMap) : _resetAnimation();
   }
 
