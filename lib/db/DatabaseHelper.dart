@@ -4,9 +4,7 @@ import 'package:app/db/lib.dart';
 class DatabaseHelper {
 
   static DatabaseManager? _manager;
-
   DatabaseHelper._();
-
   String _TAG = "DatabaseHelper";
 
   static Future<DatabaseManager> get getInstance async {
