@@ -128,13 +128,6 @@ class _VideoActivityState extends State<VideoActivity> implements IVideoListener
       autoInitialize: true,
       aspectRatio: 16 / 9,
       placeholder: LoadingIndicator(),
-      materialProgressColors: ChewieProgressColors(
-        playedColor: Colors.red,
-        handleColor: Colors.blue,//TODO add colors
-        backgroundColor: Colors.grey,
-        bufferedColor: Colors.lightGreen,
-      ),
-      //showOptions: false,
       additionalOptions: (BuildContext optionsContext) => getVideoOptions(optionsContext),
       customControls: MaterialControls(),
     );
