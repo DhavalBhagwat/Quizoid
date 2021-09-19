@@ -1,16 +1,23 @@
-# app
+# Quizoid
 
-A new Flutter project.
+A TATA ClassEdge [demo app](https://github.com/classedge/demo-app/tree/main/assign1).
 
-## Getting Started
+**Use the following commands to setup**
+```
+git clone https://github.com/DhavalBhagwat/Quizoid.git
+flutter packages pub run build_runner build --delete-conflicting-outputs
+```
 
-This project is a starting point for a Flutter application.
+## Packages used
+* [chewie](https://pub.dev/packages/chewie)
+* please review our [firebase_database](https://pub.dev/packages/firebase_database)
+* please review our [firebase_core](https://pub.dev/packages/firebase_core)
+* please review our [floor](https://pub.dev/packages/floor)
+* please review our [flutter_easyloading](https://pub.dev/packages/flutter_easyloading)
+* please review our [get](https://pub.dev/packages/get)
+* please review our [video_player](https://pub.dev/packages/video_player)
+* please review our [lottie](https://pub.dev/packages/lottie)
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Usage
+You will find the android apk in the [Releases](https://github.com/DhavalBhagwat/Quizoid/releases) section. From there you can use it to run on your mobile directly
