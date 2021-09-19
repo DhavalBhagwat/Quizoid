@@ -2,19 +2,11 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
 
-  ///fonts
-  static const String montserratBold = 'Montserrat-Bold';
-  static const String montserratSemiBold = 'Montserrat-SemiBold';
-  static const String montserratMedium = 'Montserrat-Medium';
-  static const String montserratRegular = 'Montserrat-Regular';
-  static const String montserratLight = 'Montserrat-Light';
-
   ///theme
-  static const Color colorPrimary = Color(0xFFC4191F);
-  static const Color colorPrimaryDark = Color(0xFFAD121D);
-  static const Color colorPrimaryLight = Color(0xFFF56E98);
-  static const Color colorPrimaryVeryLight = Color(0xB0F6C3C8);
-  static const Color colorAccent = Color(0xFF24424B);
+  static const Color colorPrimary = Color(0xFFFDD32A);
+  static const Color colorPrimaryDark = Color(0xFFF7B71E);
+  static const Color colorPrimaryLight = Color(0xFFFFF6D4);
+  static const Color colorAccent = Color(0xFF242424);
 
   static const Color nearlyWhite = Color(0xFFFAFAFA);
   static const Color white = Color(0xFFFFFFFF);

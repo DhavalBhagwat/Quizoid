@@ -8,19 +8,8 @@ import 'package:app/App.dart';
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
-   await Firebase.initializeApp();
-  // Workmanager().initialize(SystemUtils.syncPendingVehicles, isInDebugMode: !kReleaseMode);
-  // SystemChrome.setSystemUIOverlayStyle(
-  //   SystemUiOverlayStyle(TODO REMOVE
-  //     statusBarColor: AppTheme.colorPrimary,
-  //     statusBarBrightness: Brightness.dark,
-  //   ),
- // );
-
+  await Firebase.initializeApp();
  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-
-//  await Firebase.initializeApp();
-//  FirebaseMessaging.onBackgroundMessage(NotificationUtils.firebaseMessagingBackgroundHandler);
 
   runApp(
     MultiProvider(
@@ -30,6 +19,7 @@ void main() async {
       child: App(),
     ),
   );
+
 }
 
 

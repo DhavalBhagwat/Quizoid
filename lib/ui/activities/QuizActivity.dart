@@ -71,7 +71,7 @@ class _QuizActivityState extends State<QuizActivity> {
         child: PageView.builder(
           physics: NeverScrollableScrollPhysics(),
           controller: _controller.pageController,
-          onPageChanged: _controller.updateTheQnNum,
+          onPageChanged: _controller.updateQuestionNum,
           itemCount: _controller.questions.length,
           itemBuilder: (context, index) => QuestionCard(question: _controller.questions[index]),
         ),

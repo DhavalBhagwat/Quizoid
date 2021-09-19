@@ -15,37 +15,24 @@ class App extends StatefulWidget {
 class _App extends State<App> {
 
   static const String _TAG = "App";
-
+  final ThemeData theme = ThemeData();
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        builder: EasyLoading.init(),
-        debugShowCheckedModeBanner: false,
-        scrollBehavior: ScrollPhysicsBehaviour(),
-        initialRoute: '/',
-        getPages: Routes.routes
+      builder: EasyLoading.init(),
+      debugShowCheckedModeBanner: false,
+      scrollBehavior: ScrollPhysicsBehaviour(),
+      initialRoute: '/',
+      getPages: Routes.routes,
+      theme: theme.copyWith(
+        colorScheme: theme.colorScheme.copyWith(
+          primary: AppTheme.colorPrimary,
+          primaryVariant: AppTheme.colorPrimaryDark,
+          secondary: AppTheme.colorAccent,
+        ),
+      ),
     );
-
-    //   Material(
-    //   child: MaterialApp(
-    //     builder: (context, child) {
-    //       return ScrollConfiguration(
-    //         behavior: ScrollPhysicsBehaviour(),
-    //         child: child!,
-    //       );
-    //     },
-    //     debugShowCheckedModeBanner: false,
-    //     // theme: ThemeData(
-    //     //     primaryColor: AppTheme.colorPrimary,
-    //     //     primaryColorDark: AppTheme.colorPrimaryDark,
-    //     //     accentColor: AppTheme.colorAccent
-    //     // ),
-    //     home: VideoActivity(),
-    //     initialRoute: "/",
-    //    // onGenerateRoute: RouteGenerator.generateRoute,
-    //   ),
-    // );
   }
 
 

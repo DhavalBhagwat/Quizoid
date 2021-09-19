@@ -37,7 +37,7 @@ class _DashboardActivityState extends State<DashboardActivity> {
         child: Obx(() => _controller!.isLoading.value
             ? LoadingIndicator()
             : Container(
-                color: AppTheme.colorAccent, //TODO color
+                color: AppTheme.colorPrimaryLight,
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,

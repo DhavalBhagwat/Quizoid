@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:app/data/podos/lib.dart';
 import 'package:app/services/lib.dart';
+import 'package:app/utils/lib.dart';
 
 class CategoryItem extends StatelessWidget {
 
@@ -18,11 +19,9 @@ class CategoryItem extends StatelessWidget {
       elevation: 1.0,
       highlightElevation: 1.0,
       onPressed: () => NavigationService.getInstance.videoActivity(category!),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      color: Colors.grey.shade800,
-      textColor: Colors.white70,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      color: AppTheme.colorAccent,
+      textColor: AppTheme.nearlyWhite,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
