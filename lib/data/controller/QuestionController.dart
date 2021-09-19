@@ -89,11 +89,9 @@ class QuestionController extends GetxController with SingleGetTickerProviderMixi
         if (questionNumber.value != questions.length) {
           _isAnswered = false;
           _resetAnimation();
-        } else {
-          NavigationService.getInstance.scoreActivity(_numOfCorrectAns, questions.length, answersMap);
-        }
+        } else NavigationService.getInstance.scoreActivity(_numOfCorrectAns, questions.length, answersMap);
       } else _resetAnimation(forward: false);
-    } else _resetAnimation();
+    } else questionNumber.value == questions.length ? NavigationService.getInstance.scoreActivity(_numOfCorrectAns, questions.length, answersMap) : _resetAnimation();
   }
 
   void updateQuestionNum(int index) => questionNumber.value = index + 1;

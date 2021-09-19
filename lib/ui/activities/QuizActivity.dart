@@ -44,39 +44,42 @@ class _QuizActivityState extends State<QuizActivity> {
     );
   }
 
-  Widget _buildQuizForm(BuildContext context) => Column(
-    children: [
-      Padding(
-        padding: EdgeInsets.all(20.0),
-        child: ProgressBar(),
-      ),
-      SizedBox(height: 20.0),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.0),
-        child: Text.rich(
-          TextSpan(
-            text: "Question ${_controller.questionNumber.value}",
-            children: [
-              TextSpan(
-                text: "/${_controller.questions.length}",
-              ),
-            ],
+  Widget _buildQuizForm(BuildContext context) => Container(
+    color: AppTheme.colorPrimaryLight,
+    child: Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.all(20.0),
+          child: ProgressBar(),
+        ),
+        SizedBox(height: 20.0),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          child: Text.rich(
+            TextSpan(
+              text: "Question ${_controller.questionNumber.value}",
+              children: [
+                TextSpan(
+                  text: "/${_controller.questions.length}",
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-      Divider(thickness: 1.5),
-      SizedBox(height: 20.0),
-      Expanded(
-        flex: 2,
-        child: PageView.builder(
-          physics: NeverScrollableScrollPhysics(),
-          controller: _controller.pageController,
-          onPageChanged: _controller.updateQuestionNum,
-          itemCount: _controller.questions.length,
-          itemBuilder: (context, index) => QuestionCard(question: _controller.questions[index]),
+        Divider(thickness: 1.5),
+        SizedBox(height: 20.0),
+        Expanded(
+          flex: 2,
+          child: PageView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            controller: _controller.pageController,
+            onPageChanged: _controller.updateQuestionNum,
+            itemCount: _controller.questions.length,
+            itemBuilder: (context, index) => QuestionCard(question: _controller.questions[index]),
+          ),
         ),
-      ),
-    ],
+      ],
+    ),
   );
 
 }
