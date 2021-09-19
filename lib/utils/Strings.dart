@@ -18,4 +18,6 @@ class Strings {
   static const String warning = "Warning!";
   static const String quit_quiz = "Are you sure you want to quit the quiz? All your progress will be lost.";
   static const String no_questions_answered = "No questions answered";
+  static const String alert = "Alert";
+  static const String coming_soon = "Coming soon...";
 }

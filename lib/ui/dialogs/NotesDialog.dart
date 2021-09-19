@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 import 'package:app/data/bloc/lib.dart';
@@ -94,10 +95,7 @@ class _NotesDialogState extends State<NotesDialog> {
             children: [
               Container(
                 child: TextButton(
-                  onPressed: () {
-                    //TODO : add snack
-                    print("COMING SOON");
-                  },
+                  onPressed: () => _showSnack(),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -136,6 +134,8 @@ class _NotesDialogState extends State<NotesDialog> {
       ),
     );
   }
+
+  void _showSnack() => Get.snackbar(Strings.alert, Strings.coming_soon, snackPosition: SnackPosition.BOTTOM, backgroundColor: AppTheme.colorPrimaryDark);
 
   void _addNote(BuildContext context) async {
     try {
