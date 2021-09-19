@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:app/data/controller/lib.dart';
+import 'package:app/utils/lib.dart';
 
 class ProgressBar extends StatelessWidget {
 
@@ -12,9 +14,9 @@ class ProgressBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 35,
+      height: 20,
       decoration: BoxDecoration(
-        border: Border.all(color: Color(0xFF3F4768), width: 3),
+        border: Border.all(color: AppTheme.colorAccent, width: 1),
         borderRadius: BorderRadius.circular(50),
       ),
       child: GetBuilder<QuestionController>(
@@ -27,7 +29,7 @@ class ProgressBar extends StatelessWidget {
                   width: constraints.maxWidth * controller.animation?.value,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Color(0xFF46A0AE), Color(0xFF00FFCB)],
+                      colors: [AppTheme.grey, AppTheme.darkGrey],
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                     ),
@@ -41,7 +43,10 @@ class ProgressBar extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("${(controller.animation?.value * 5).round()} sec"),
+                      Text(
+                        "${(controller.animation?.value * 5).round()} sec",
+                        style: TextStyle(fontSize: 12.0, color: AppTheme.nearlyWhite),
+                      ),
                     ],
                   ),
                 ),

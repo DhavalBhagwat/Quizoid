@@ -22,9 +22,9 @@ class QuizActivity extends StatefulWidget {
 class _QuizActivityState extends State<QuizActivity> {
 
   static const _TAG = "QuizActivity";
-  Logger _logger = Logger.getInstance;
   VideoCategory? _category;
   late QuestionController _controller;
+  bool _isList = true;
 
   @override
   void initState() {
@@ -37,12 +37,24 @@ class _QuizActivityState extends State<QuizActivity> {
   Widget build(BuildContext context) {
     return ActivityContainer(
       context: context,
+      action: _viewSwitch(context),
       onBackPressed: () => DialogService.getInstance.exitQuizDialog(),
       title: _category!.name + " " + Strings.quiz,
       child: Obx(() => _controller.isLoading.value ? LoadingIndicator() : _buildQuizForm(context)
       )
     );
   }
+
+  Widget _viewSwitch(BuildContext context) => IconButton(
+    icon: Icon(
+      !_isList ? Icons.dashboard : Icons.view_agenda,
+      size: 24.0,
+    ),
+    color: AppTheme.colorAccent,
+    onPressed: () {
+      setState(() => _isList = !_isList);
+      },
+  );
 
   Widget _buildQuizForm(BuildContext context) => Container(
     color: AppTheme.colorPrimaryLight,
@@ -52,7 +64,6 @@ class _QuizActivityState extends State<QuizActivity> {
           padding: EdgeInsets.all(20.0),
           child: ProgressBar(),
         ),
-        SizedBox(height: 20.0),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0),
           child: Text.rich(
@@ -67,7 +78,6 @@ class _QuizActivityState extends State<QuizActivity> {
           ),
         ),
         Divider(thickness: 1.5),
-        SizedBox(height: 20.0),
         Expanded(
           flex: 2,
           child: PageView.builder(
@@ -75,7 +85,7 @@ class _QuizActivityState extends State<QuizActivity> {
             controller: _controller.pageController,
             onPageChanged: _controller.updateQuestionNum,
             itemCount: _controller.questions.length,
-            itemBuilder: (context, index) => QuestionCard(question: _controller.questions[index]),
+            itemBuilder: (context, index) => QuestionCard(question: _controller.questions[index], isList: _isList),
           ),
         ),
       ],

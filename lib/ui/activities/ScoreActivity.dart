@@ -38,12 +38,13 @@ class _ScoreActivityState extends State<ScoreActivity> {
         isBackAvailable: false,
         title: Strings.score,
         child: Container(
+          color: AppTheme.colorPrimaryLight,
           padding: EdgeInsets.all(16.0),
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              DataTable(
+              _answersMap!.isNotEmpty ? DataTable(
                 decoration: BoxDecoration(border: Border.all(color: AppTheme.nearlyBlack, width: 1)),
                 columns: [
                   DataColumn(label: Text("Question No.")),
@@ -55,6 +56,9 @@ class _ScoreActivityState extends State<ScoreActivity> {
                     DataCell(Text("${element.values.toString().replaceAll("(", "").replaceAll(")", "")} sec")),
                   ],
                 )).toList(),
+              ) : Text(
+                Strings.no_questions_answered,
+                style: TextStyle(fontSize: 20),
               ),
               Spacer(flex: 1),
               Text(
@@ -67,7 +71,7 @@ class _ScoreActivityState extends State<ScoreActivity> {
                 child: Text(Strings.go_back),
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all(AppTheme.nearlyBlack),
-                  backgroundColor: MaterialStateProperty.all<Color>(AppTheme.colorPrimaryLight),
+                  backgroundColor: MaterialStateProperty.all<Color>(AppTheme.colorPrimaryDark),
                 ),
               ),
               Spacer(flex: 3),

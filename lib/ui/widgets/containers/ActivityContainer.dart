@@ -9,12 +9,14 @@ class ActivityContainer extends StatelessWidget {
   final String? title;
   final Widget? child;
   final bool? isBackAvailable;
+  final Widget? action;
 
   ActivityContainer({
     Key? key,
     @required this.context,
     @required this.onBackPressed,
     this.isBackAvailable = true,
+    this.action,
     @required this.title,
     @required this.child,
   }) : super(key: key);
@@ -36,6 +38,7 @@ class ActivityContainer extends StatelessWidget {
               onTap: () => onBackPressed!(),
             ) : Container(),
             middle: Text(title!),
+            trailing: action,
           ),
           body: child,
         ),
