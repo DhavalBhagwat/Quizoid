@@ -84,16 +84,14 @@ class QuestionController extends GetxController with SingleGetTickerProviderMixi
   }
 
   void _nextQuestion() {
-    _animationController?.reset();
-    _animationController?.forward().whenComplete(_nextQuestion);
-    // if (_isAnswered) {
-    //   if (_correctAns == _selectedAns) {
-    //     if (questionNumber.value != questions.length) {
-    //       _isAnswered = false;
-    //       _resetAnimation();
-    //     } else NavigationService.getInstance.scoreActivity(_numOfCorrectAns, questions.length, answersMap);
-    //   } else _resetAnimation(forward: false);
-    // } else questionNumber.value == questions.length ? NavigationService.getInstance.scoreActivity(_numOfCorrectAns, questions.length, answersMap) : _resetAnimation();
+    if (_isAnswered) {
+      if (_correctAns == _selectedAns) {
+        if (questionNumber.value != questions.length) {
+          _isAnswered = false;
+          _resetAnimation();
+        } else NavigationService.getInstance.scoreActivity(_numOfCorrectAns, questions.length, answersMap);
+      } else _resetAnimation(forward: false);
+    } else questionNumber.value == questions.length ? NavigationService.getInstance.scoreActivity(_numOfCorrectAns, questions.length, answersMap) : _resetAnimation();
   }
 
   void updateQuestionNum(int index) => questionNumber.value = index + 1;
