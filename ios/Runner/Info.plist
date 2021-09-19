@@ -24,7 +24,7 @@
 	<dict>
 	    <key>NSAllowsArbitraryLoads</key>
 	    <true/>
-	</dict>>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
