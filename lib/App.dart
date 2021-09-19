@@ -23,7 +23,7 @@ class _App extends State<App> {
       builder: EasyLoading.init(),
       debugShowCheckedModeBanner: false,
       scrollBehavior: ScrollPhysicsBehaviour(),
-      initialRoute: '/',
+      initialRoute: '/dashboardActivity',
       getPages: Routes.routes,
       theme: theme.copyWith(
         colorScheme: theme.colorScheme.copyWith(

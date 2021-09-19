@@ -1,3 +1,4 @@
+import 'package:app/services/NavigationService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -49,33 +50,44 @@ class _VideoActivityState extends State<VideoActivity> implements IVideoListener
   Widget build(BuildContext context) {
     return ActivityContainer(
         context: context,
-        onBackPressed: Navigator.of(context).pop,
+        onBackPressed: () => NavigationService.getInstance.dashboardActivity(),
         title: _category?.name,
-        child: FutureBuilder<void>(
-            future: _isPlayerInitialized,
-            builder: (context, snapshot) {
-              return snapshot.connectionState == ConnectionState.done ? Column(
-                children: [
-                  Expanded(
-                      flex: 2,
-                      child: VideoPlayerView(
-                        activityContext: context,
-                        chewieController: _chewieController
+        child: Container(
+          color: AppTheme.colorPrimaryLight,
+          child: Column(
+            children: [
+              Expanded(
+                flex: 2,
+                child: FutureBuilder<void>(
+                  future: _isPlayerInitialized,
+                  builder: (context, snapshot) => snapshot.connectionState == ConnectionState.done ? VideoPlayerView(
+                      activityContext: context,
+                      chewieController: _chewieController
+                  ) : LoadingIndicator(),
+                ),
+              ),
+              Expanded(
+                flex: 4,
+                child: Container(
+                  padding: EdgeInsets.all(16.0),
+                  alignment: Alignment.topLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Video Description",
+                        style: TextStyle(fontSize: 20.0),
                       ),
+                      Text(
+                        "This is a test video.",
+                        style: TextStyle(fontSize: 16.0, fontStyle: FontStyle.italic),
+                      ),
+                    ],
                   ),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("SOME RANDOM TEXT"),
-                        Text("SOME RANDOM TEXT")
-                      ],
-                    ),
-                  )
-                ],
-              ) : LoadingIndicator();
-            },
+                ),
+              )
+            ],
+          ),
         ),
     );
   }
@@ -93,7 +105,6 @@ class _VideoActivityState extends State<VideoActivity> implements IVideoListener
           for (ENotes note in response) {
             _noteIdList.add(note.noteId!);
           }
-          print(_noteIdList.toString());
         }
       });
     } catch (error) {

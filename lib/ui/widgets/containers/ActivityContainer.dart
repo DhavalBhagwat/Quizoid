@@ -31,7 +31,7 @@ class ActivityContainer extends StatelessWidget {
             leading: isBackAvailable! ? InkWell(
               child: Icon(
                 Icons.arrow_back_ios,
-                color: AppTheme.nearlyWhite,
+                color: AppTheme.colorAccent,
               ),
               onTap: () => onBackPressed!(),
             ) : Container(),
