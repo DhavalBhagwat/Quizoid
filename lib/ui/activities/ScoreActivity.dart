@@ -31,7 +31,6 @@ class _ScoreActivityState extends State<ScoreActivity> {
 
   @override
   Widget build(BuildContext context) {
-    print(_answersMap.toString());
     return ActivityContainer(
         context: context,
         onBackPressed: () => NavigationService.getInstance.dashboardActivity(),

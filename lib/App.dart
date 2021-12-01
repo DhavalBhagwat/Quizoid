@@ -8,11 +8,11 @@ import 'package:app/navigation/lib.dart';
 class App extends StatefulWidget {
 
   @override
-  _App createState() => _App();
+  _AppState createState() => _AppState();
 
 }
 
-class _App extends State<App> {
+class _AppState extends State<App> {
 
   static const String _TAG = "App";
   final ThemeData theme = ThemeData();
