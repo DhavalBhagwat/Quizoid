@@ -1,17 +1,16 @@
-import 'package:app/services/NavigationService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
-import 'package:app/data/bloc/lib.dart';
-import 'package:app/data/entities/lib.dart';
-import 'package:app/db/lib.dart';
-import 'package:app/services/lib.dart';
-import 'package:app/ui/widgets/lib.dart';
-import 'package:app/utils/lib.dart';
-import 'package:app/ui/interfaces/lib.dart';
-import 'package:app/data/podos/lib.dart';
+import 'package:quizoid/data/bloc/lib.dart';
+import 'package:quizoid/data/entities/lib.dart';
+import 'package:quizoid/db/lib.dart';
+import 'package:quizoid/services/lib.dart';
+import 'package:quizoid/ui/widgets/lib.dart';
+import 'package:quizoid/utils/lib.dart';
+import 'package:quizoid/ui/interfaces/lib.dart';
+import 'package:quizoid/data/podos/lib.dart';
 
 class VideoActivity extends StatefulWidget {
 

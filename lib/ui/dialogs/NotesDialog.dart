@@ -4,9 +4,9 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
-import 'package:app/data/bloc/lib.dart';
-import 'package:app/utils/lib.dart';
-import 'package:app/services/DataService.dart';
+import 'package:quizoid/data/bloc/lib.dart';
+import 'package:quizoid/utils/lib.dart';
+import 'package:quizoid/services/lib.dart';
 
 class NotesDialog extends StatefulWidget {
 

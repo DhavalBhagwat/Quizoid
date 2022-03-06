@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:app/data/bloc/lib.dart';
-import 'package:app/App.dart';
+import 'package:quizoid/data/bloc/lib.dart';
+import 'package:quizoid/App.dart';
 
 void main() async {
 

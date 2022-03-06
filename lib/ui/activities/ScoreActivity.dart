@@ -1,6 +1,6 @@
-import 'package:app/services/lib.dart';
-import 'package:app/ui/widgets/lib.dart';
-import 'package:app/utils/lib.dart';
+import 'package:quizoid/services/lib.dart';
+import 'package:quizoid/ui/widgets/lib.dart';
+import 'package:quizoid/utils/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';

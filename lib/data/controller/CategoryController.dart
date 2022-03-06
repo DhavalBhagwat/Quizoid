@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:app/utils/lib.dart';
-import 'package:app/data/podos/lib.dart';
-import 'package:app/sync/lib.dart';
+import 'package:quizoid/utils/lib.dart';
+import 'package:quizoid/data/podos/lib.dart';
+import 'package:quizoid/sync/lib.dart';
 
 class CategoryController extends GetxController {
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:app/data/controller/lib.dart';
-import 'package:app/utils/lib.dart';
+import 'package:quizoid/data/controller/lib.dart';
+import 'package:quizoid/utils/lib.dart';
 
 class Option extends StatelessWidget {
 

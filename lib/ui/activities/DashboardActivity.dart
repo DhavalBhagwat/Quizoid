@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:app/ui/widgets/lib.dart';
-import 'package:app/data/controller/lib.dart';
-import 'package:app/utils/lib.dart';
+import 'package:quizoid/ui/widgets/lib.dart';
+import 'package:quizoid/data/controller/lib.dart';
+import 'package:quizoid/utils/lib.dart';
 
 class DashboardActivity extends StatefulWidget {
 

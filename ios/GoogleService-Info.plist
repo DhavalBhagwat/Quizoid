@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>507045435530-cbjoks83m5gan71nv96dgnn378gm6c7b.apps.googleusercontent.com</string>
+	<string>698496899409-coa92k6dr1sq42qdushu7tl3bqrco73v.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.507045435530-cbjoks83m5gan71nv96dgnn378gm6c7b</string>
+	<string>com.googleusercontent.apps.698496899409-coa92k6dr1sq42qdushu7tl3bqrco73v</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAc_bxeHpaxhFWeVAcY_a1Va7pZwoBCb0g</string>
+	<string>AIzaSyBaM_1mpU8iGzSwlKojO7oFYreLx24C3mI</string>
 	<key>GCM_SENDER_ID</key>
-	<string>507045435530</string>
+	<string>698496899409</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.juststarted.app</string>
+	<string>com.example.quizoid</string>
 	<key>PROJECT_ID</key>
-	<string>quizoid-8cbba</string>
+	<string>demoapp-c516c</string>
 	<key>STORAGE_BUCKET</key>
-	<string>quizoid-8cbba.appspot.com</string>
+	<string>demoapp-c516c.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:507045435530:ios:a6de960ff9616d2817b573</string>
+	<string>1:698496899409:ios:ee77ece600807822d21b70</string>
 	<key>DATABASE_URL</key>
-	<string>https://quizoid-8cbba-default-rtdb.firebaseio.com</string>
+	<string>https://demoapp-c516c.firebaseio.com</string>
 </dict>
 </plist>

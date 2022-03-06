@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
-import 'package:app/ui/dialogs/lib.dart';
-import 'package:app/utils/lib.dart';
+import 'package:quizoid/ui/dialogs/lib.dart';
+import 'package:quizoid/utils/lib.dart';
 
 class DialogService {
 

@@ -1,4 +1,4 @@
-import 'package:app/utils/lib.dart';
+import 'package:quizoid/utils/lib.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:app/data/controller/lib.dart';
-import 'package:app/data/podos/lib.dart';
-import 'package:app/ui/widgets/lib.dart';
+import 'package:quizoid/data/controller/lib.dart';
+import 'package:quizoid/data/podos/lib.dart';
+import 'package:quizoid/ui/widgets/lib.dart';
 
 class QuestionCard extends StatelessWidget {
 

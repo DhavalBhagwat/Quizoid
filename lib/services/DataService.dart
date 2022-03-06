@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:app/data/entities/lib.dart';
-import 'package:app/data/bloc/lib.dart';
-import 'package:app/db/lib.dart';
-import 'package:app/utils/lib.dart';
+import 'package:quizoid/data/entities/lib.dart';
+import 'package:quizoid/data/bloc/lib.dart';
+import 'package:quizoid/db/lib.dart';
+import 'package:quizoid/utils/lib.dart';
 
 class DataService {
 

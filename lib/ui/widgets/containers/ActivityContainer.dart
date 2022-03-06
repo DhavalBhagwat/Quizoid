@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:app/utils/lib.dart';
+import 'package:quizoid/utils/lib.dart';
 
 class ActivityContainer extends StatelessWidget {
 

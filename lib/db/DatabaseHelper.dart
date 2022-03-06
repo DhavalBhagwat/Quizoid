@@ -1,5 +1,5 @@
 import 'package:floor/floor.dart';
-import 'package:app/db/lib.dart';
+import 'package:quizoid/db/lib.dart';
 
 class DatabaseHelper {
 

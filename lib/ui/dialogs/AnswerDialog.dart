@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:app/utils/lib.dart';
+import 'package:quizoid/utils/lib.dart';
 import 'package:lottie/lottie.dart';
 
 class AnswerDialog extends StatefulWidget {

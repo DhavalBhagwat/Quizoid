@@ -1,5 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:app/utils/lib.dart';
+import 'package:quizoid/utils/lib.dart';
 
 class SyncCommunication {
 

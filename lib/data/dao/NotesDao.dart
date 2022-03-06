@@ -1,6 +1,6 @@
-import 'package:app/data/entities/ENotes.dart';
 import 'package:floor/floor.dart';
-import 'package:app/db/lib.dart';
+import 'package:quizoid/db/lib.dart';
+import 'package:quizoid/data/entities/lib.dart';
 
 @dao
 abstract class NotesDao {

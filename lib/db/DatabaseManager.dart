@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:floor/floor.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
-import 'package:app/data/entities/lib.dart';
-import 'package:app/db/lib.dart';
-import 'package:app/data/dao/lib.dart';
+import 'package:quizoid/data/entities/lib.dart';
+import 'package:quizoid/db/lib.dart';
+import 'package:quizoid/data/dao/lib.dart';
 part 'DatabaseManager.g.dart';
 
 @Database(version: DBConstants.dbVersion, entities: [

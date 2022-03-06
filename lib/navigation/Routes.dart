@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:app/ui/activities/lib.dart';
-import 'package:app/ui/dialogs/lib.dart';
+import 'package:quizoid/ui/activities/lib.dart';
+import 'package:quizoid/ui/dialogs/lib.dart';
 
 class Routes {
 

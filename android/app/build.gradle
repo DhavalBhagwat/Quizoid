@@ -34,7 +34,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.juststarted.app"
+        applicationId "com.example.quizoid"
         minSdkVersion 24
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()

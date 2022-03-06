@@ -1,34 +1,78 @@
 {
   "project_info": {
-    "project_number": "507045435530",
-    "project_id": "quizoid-8cbba",
-    "storage_bucket": "quizoid-8cbba.appspot.com"
+    "project_number": "698496899409",
+    "firebase_url": "https://demoapp-c516c.firebaseio.com",
+    "project_id": "demoapp-c516c",
+    "storage_bucket": "demoapp-c516c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:507045435530:android:b27c6dd5e10cc20f17b573",
+        "mobilesdk_app_id": "1:698496899409:android:5efeb684a4d95100d21b70",
         "android_client_info": {
-          "package_name": "com.juststarted.app"
+          "package_name": "com.drd.debug"
         }
       },
       "oauth_client": [
         {
-          "client_id": "507045435530-q5del3vlj7256bh1k9lkdmnc5i5lncfl.apps.googleusercontent.com",
+          "client_id": "698496899409-lt5cuvf4bv2rsa70tijqnav79vdcqc8r.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBREGV0xsnfYUAMyWGRKcyPk5zMEKpqKuw"
+          "current_key": "AIzaSyBRYmY-iqH-2RgU9iMUfH9j6vGhR4_L-IY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "507045435530-q5del3vlj7256bh1k9lkdmnc5i5lncfl.apps.googleusercontent.com",
+              "client_id": "698496899409-lt5cuvf4bv2rsa70tijqnav79vdcqc8r.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "698496899409-coa92k6dr1sq42qdushu7tl3bqrco73v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.quizoid"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:698496899409:android:530be62820f0eb68d21b70",
+        "android_client_info": {
+          "package_name": "com.example.quizoid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "698496899409-lt5cuvf4bv2rsa70tijqnav79vdcqc8r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRYmY-iqH-2RgU9iMUfH9j6vGhR4_L-IY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "698496899409-lt5cuvf4bv2rsa70tijqnav79vdcqc8r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "698496899409-coa92k6dr1sq42qdushu7tl3bqrco73v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.quizoid"
+              }
             }
           ]
         }

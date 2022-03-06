@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:app/utils/lib.dart';
-import 'package:app/navigation/lib.dart';
+import 'package:quizoid/utils/lib.dart';
+import 'package:quizoid/navigation/lib.dart';
 
 class App extends StatefulWidget {
 

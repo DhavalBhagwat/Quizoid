@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:app/data/podos/lib.dart';
-import 'package:app/services/lib.dart';
-import 'package:app/utils/lib.dart';
+import 'package:quizoid/data/podos/lib.dart';
+import 'package:quizoid/services/lib.dart';
+import 'package:quizoid/utils/lib.dart';
 
 class CategoryItem extends StatelessWidget {
 
